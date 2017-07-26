@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E52F203F088D262062BCCF2 /* libPods-YHImagePickerControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A9605629E68B56F9B7BFC3 /* libPods-YHImagePickerControl.a */; };
+		FB8735331F2837FF008BD669 /* YHPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8735321F2837FF008BD669 /* YHPhotoCollectionViewCell.m */; };
 		FBD5F4F91F271F70009D1C0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5F4F81F271F70009D1C0F /* main.m */; };
 		FBD5F4FC1F271F70009D1C0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5F4FB1F271F70009D1C0F /* AppDelegate.m */; };
 		FBD5F4FF1F271F70009D1C0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5F4FE1F271F70009D1C0F /* ViewController.m */; };
@@ -35,6 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86F9013E52123DF31554486B /* Pods-YHImagePickerControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHImagePickerControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-YHImagePickerControl/Pods-YHImagePickerControl.release.xcconfig"; sourceTree = "<group>"; };
+		A7A9605629E68B56F9B7BFC3 /* libPods-YHImagePickerControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YHImagePickerControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5284D167E36E51B0BDA026F /* Pods-YHImagePickerControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHImagePickerControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YHImagePickerControl/Pods-YHImagePickerControl.debug.xcconfig"; sourceTree = "<group>"; };
+		FB8735311F2837FF008BD669 /* YHPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		FB8735321F2837FF008BD669 /* YHPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		FB8735361F283E13008BD669 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		FB8735371F283FD4008BD669 /* YHImagePickerControl_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHImagePickerControl_Prefix.pch; sourceTree = "<group>"; };
 		FBD5F4F41F271F70009D1C0F /* YHImagePickerControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YHImagePickerControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD5F4F81F271F70009D1C0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBD5F4FA1F271F70009D1C0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E52F203F088D262062BCCF2 /* libPods-YHImagePickerControl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +88,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21C3BC94329376A483B264AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5284D167E36E51B0BDA026F /* Pods-YHImagePickerControl.debug.xcconfig */,
+				86F9013E52123DF31554486B /* Pods-YHImagePickerControl.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DC0A6BD81089400C48CDA692 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7A9605629E68B56F9B7BFC3 /* libPods-YHImagePickerControl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB8735341F283DDA008BD669 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		FB8735351F283DED008BD669 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FB8735361F283E13008BD669 /* Const.h */,
+				FB8735371F283FD4008BD669 /* YHImagePickerControl_Prefix.pch */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		FBD5F4EB1F271F70009D1C0F = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +128,8 @@
 				FBD5F5101F271F71009D1C0F /* YHImagePickerControlTests */,
 				FBD5F51B1F271F71009D1C0F /* YHImagePickerControlUITests */,
 				FBD5F4F51F271F70009D1C0F /* Products */,
+				21C3BC94329376A483B264AD /* Pods */,
+				DC0A6BD81089400C48CDA692 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +146,16 @@
 		FBD5F4F61F271F70009D1C0F /* YHImagePickerControl */ = {
 			isa = PBXGroup;
 			children = (
+				FB8735351F283DED008BD669 /* Common */,
+				FB8735341F283DDA008BD669 /* Extension */,
+				FBD5F52A1F272A4F009D1C0F /* YHImagePicker */,
 				FBD5F4FA1F271F70009D1C0F /* AppDelegate.h */,
 				FBD5F4FB1F271F70009D1C0F /* AppDelegate.m */,
 				FBD5F4FD1F271F70009D1C0F /* ViewController.h */,
 				FBD5F4FE1F271F70009D1C0F /* ViewController.m */,
 				FBD5F5001F271F70009D1C0F /* Main.storyboard */,
+				FB8735311F2837FF008BD669 /* YHPhotoCollectionViewCell.h */,
+				FB8735321F2837FF008BD669 /* YHPhotoCollectionViewCell.m */,
 				FBD5F5031F271F70009D1C0F /* Assets.xcassets */,
 				FBD5F5051F271F70009D1C0F /* LaunchScreen.storyboard */,
 				FBD5F5081F271F70009D1C0F /* Info.plist */,
@@ -140,6 +190,13 @@
 			path = YHImagePickerControlUITests;
 			sourceTree = "<group>";
 		};
+		FBD5F52A1F272A4F009D1C0F /* YHImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = YHImagePicker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBD5F5211F271F71009D1C0F /* Build configuration list for PBXNativeTarget "YHImagePickerControl" */;
 			buildPhases = (
+				2824040EF776E75E5C84A084 /* [CP] Check Pods Manifest.lock */,
 				FBD5F4F01F271F70009D1C0F /* Sources */,
 				FBD5F4F11F271F70009D1C0F /* Frameworks */,
 				FBD5F4F21F271F70009D1C0F /* Resources */,
+				7840F3FAFA91D977B792B12E /* [CP] Embed Pods Frameworks */,
+				9CC2C5463C842321A4F3C6C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,11 +331,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2824040EF776E75E5C84A084 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7840F3FAFA91D977B792B12E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YHImagePickerControl/Pods-YHImagePickerControl-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CC2C5463C842321A4F3C6C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YHImagePickerControl/Pods-YHImagePickerControl-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FBD5F4F01F271F70009D1C0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB8735331F2837FF008BD669 /* YHPhotoCollectionViewCell.m in Sources */,
 				FBD5F4FF1F271F70009D1C0F /* ViewController.m in Sources */,
 				FBD5F4FC1F271F70009D1C0F /* AppDelegate.m in Sources */,
 				FBD5F4F91F271F70009D1C0F /* main.m in Sources */,
@@ -425,10 +534,13 @@
 		};
 		FBD5F5221F271F71009D1C0F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5284D167E36E51B0BDA026F /* Pods-YHImagePickerControl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q7XTNF769W;
+				GCC_PREFIX_HEADER = YHImagePickerControl/YHImagePickerControl_Prefix.pch;
 				INFOPLIST_FILE = YHImagePickerControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aragoncs.YHImagePickerControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,10 +549,13 @@
 		};
 		FBD5F5231F271F71009D1C0F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86F9013E52123DF31554486B /* Pods-YHImagePickerControl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q7XTNF769W;
+				GCC_PREFIX_HEADER = YHImagePickerControl/YHImagePickerControl_Prefix.pch;
 				INFOPLIST_FILE = YHImagePickerControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aragoncs.YHImagePickerControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,6 +631,7 @@
 				FBD5F5231F271F71009D1C0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBD5F5241F271F71009D1C0F /* Build configuration list for PBXNativeTarget "YHImagePickerControlTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +640,7 @@
 				FBD5F5261F271F71009D1C0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBD5F5271F271F71009D1C0F /* Build configuration list for PBXNativeTarget "YHImagePickerControlUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +649,7 @@
 				FBD5F5291F271F71009D1C0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
