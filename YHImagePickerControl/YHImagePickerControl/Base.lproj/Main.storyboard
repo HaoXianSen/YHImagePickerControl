@@ -44,30 +44,11 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="YHPhotoCollectionViewCell" id="yfW-V9-Bis" customClass="YHPhotoCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="117" height="110"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="117" height="110"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-ol-KDt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="117" height="110"/>
-                                                </imageView>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="X4P-ol-KDt" secondAttribute="trailing" id="8kM-dt-bRU"/>
-                                            <constraint firstAttribute="bottom" secondItem="X4P-ol-KDt" secondAttribute="bottom" id="Qyl-uO-BXB"/>
-                                            <constraint firstItem="X4P-ol-KDt" firstAttribute="top" secondItem="yfW-V9-Bis" secondAttribute="top" id="oIh-fo-UhX"/>
-                                            <constraint firstItem="X4P-ol-KDt" firstAttribute="leading" secondItem="yfW-V9-Bis" secondAttribute="leading" id="rBh-pm-Oin"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="photoImageView" destination="X4P-ol-KDt" id="GB5-PY-ADD"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="LN7-EL-Lzk"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2w5-xe-YAN"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,6 +61,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="n9D-bO-Nk9" secondAttribute="bottom" constant="50" id="kEq-Ne-98q"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="TjH-iS-Gn0" id="Uq1-bd-6EB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

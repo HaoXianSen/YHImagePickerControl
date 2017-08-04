@@ -7,7 +7,7 @@
 //
 
 #import "YHPhotoCollectionViewCell.h"
-
+NSString * const PhotoCollectionViewCellId = @"YHPhotoCollectionViewCell";
 @implementation YHPhotoCollectionViewCell
 
 @end

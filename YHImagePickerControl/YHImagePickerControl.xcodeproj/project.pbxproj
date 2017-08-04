@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1E52F203F088D262062BCCF2 /* libPods-YHImagePickerControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A9605629E68B56F9B7BFC3 /* libPods-YHImagePickerControl.a */; };
+		FB523D0A1F29CA7100908464 /* YHPhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB523D091F29CA7100908464 /* YHPhotoCollectionCell.xib */; };
+		FB523D0D1F29D1FE00908464 /* YHImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB523D0C1F29D1FE00908464 /* YHImagePickerManager.m */; };
+		FB523D101F29D70000908464 /* YHImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB523D0F1F29D70000908464 /* YHImagePickerViewController.m */; };
+		FB523D121F29D73900908464 /* YHImagePickerStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB523D111F29D73900908464 /* YHImagePickerStoryBoard.storyboard */; };
+		FB523D151F29D80100908464 /* YHPhotoAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB523D141F29D80100908464 /* YHPhotoAssetCell.m */; };
+		FB523D171F29D81800908464 /* YHPhotoAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB523D161F29D81800908464 /* YHPhotoAssetCell.xib */; };
 		FB8735331F2837FF008BD669 /* YHPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8735321F2837FF008BD669 /* YHPhotoCollectionViewCell.m */; };
 		FBD5F4F91F271F70009D1C0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5F4F81F271F70009D1C0F /* main.m */; };
 		FBD5F4FC1F271F70009D1C0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5F4FB1F271F70009D1C0F /* AppDelegate.m */; };
@@ -40,6 +46,15 @@
 		86F9013E52123DF31554486B /* Pods-YHImagePickerControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHImagePickerControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-YHImagePickerControl/Pods-YHImagePickerControl.release.xcconfig"; sourceTree = "<group>"; };
 		A7A9605629E68B56F9B7BFC3 /* libPods-YHImagePickerControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YHImagePickerControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5284D167E36E51B0BDA026F /* Pods-YHImagePickerControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHImagePickerControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YHImagePickerControl/Pods-YHImagePickerControl.debug.xcconfig"; sourceTree = "<group>"; };
+		FB523D091F29CA7100908464 /* YHPhotoCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YHPhotoCollectionCell.xib; sourceTree = "<group>"; };
+		FB523D0B1F29D1FE00908464 /* YHImagePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHImagePickerManager.h; sourceTree = "<group>"; };
+		FB523D0C1F29D1FE00908464 /* YHImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHImagePickerManager.m; sourceTree = "<group>"; };
+		FB523D0E1F29D70000908464 /* YHImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHImagePickerViewController.h; sourceTree = "<group>"; };
+		FB523D0F1F29D70000908464 /* YHImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHImagePickerViewController.m; sourceTree = "<group>"; };
+		FB523D111F29D73900908464 /* YHImagePickerStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = YHImagePickerStoryBoard.storyboard; sourceTree = "<group>"; };
+		FB523D131F29D80100908464 /* YHPhotoAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHPhotoAssetCell.h; sourceTree = "<group>"; };
+		FB523D141F29D80100908464 /* YHPhotoAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHPhotoAssetCell.m; sourceTree = "<group>"; };
+		FB523D161F29D81800908464 /* YHPhotoAssetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YHPhotoAssetCell.xib; sourceTree = "<group>"; };
 		FB8735311F2837FF008BD669 /* YHPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHPhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		FB8735321F2837FF008BD669 /* YHPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		FB8735361F283E13008BD669 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
@@ -156,6 +171,7 @@
 				FBD5F5001F271F70009D1C0F /* Main.storyboard */,
 				FB8735311F2837FF008BD669 /* YHPhotoCollectionViewCell.h */,
 				FB8735321F2837FF008BD669 /* YHPhotoCollectionViewCell.m */,
+				FB523D091F29CA7100908464 /* YHPhotoCollectionCell.xib */,
 				FBD5F5031F271F70009D1C0F /* Assets.xcassets */,
 				FBD5F5051F271F70009D1C0F /* LaunchScreen.storyboard */,
 				FBD5F5081F271F70009D1C0F /* Info.plist */,
@@ -193,6 +209,14 @@
 		FBD5F52A1F272A4F009D1C0F /* YHImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				FB523D0B1F29D1FE00908464 /* YHImagePickerManager.h */,
+				FB523D0C1F29D1FE00908464 /* YHImagePickerManager.m */,
+				FB523D0E1F29D70000908464 /* YHImagePickerViewController.h */,
+				FB523D0F1F29D70000908464 /* YHImagePickerViewController.m */,
+				FB523D111F29D73900908464 /* YHImagePickerStoryBoard.storyboard */,
+				FB523D131F29D80100908464 /* YHPhotoAssetCell.h */,
+				FB523D141F29D80100908464 /* YHPhotoAssetCell.m */,
+				FB523D161F29D81800908464 /* YHPhotoAssetCell.xib */,
 			);
 			name = YHImagePicker;
 			sourceTree = "<group>";
@@ -310,6 +334,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD5F5071F271F70009D1C0F /* LaunchScreen.storyboard in Resources */,
+				FB523D121F29D73900908464 /* YHImagePickerStoryBoard.storyboard in Resources */,
+				FB523D171F29D81800908464 /* YHPhotoAssetCell.xib in Resources */,
+				FB523D0A1F29CA7100908464 /* YHPhotoCollectionCell.xib in Resources */,
 				FBD5F5041F271F70009D1C0F /* Assets.xcassets in Resources */,
 				FBD5F5021F271F70009D1C0F /* Main.storyboard in Resources */,
 			);
@@ -387,7 +414,10 @@
 				FB8735331F2837FF008BD669 /* YHPhotoCollectionViewCell.m in Sources */,
 				FBD5F4FF1F271F70009D1C0F /* ViewController.m in Sources */,
 				FBD5F4FC1F271F70009D1C0F /* AppDelegate.m in Sources */,
+				FB523D0D1F29D1FE00908464 /* YHImagePickerManager.m in Sources */,
+				FB523D151F29D80100908464 /* YHPhotoAssetCell.m in Sources */,
 				FBD5F4F91F271F70009D1C0F /* main.m in Sources */,
+				FB523D101F29D70000908464 /* YHImagePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
