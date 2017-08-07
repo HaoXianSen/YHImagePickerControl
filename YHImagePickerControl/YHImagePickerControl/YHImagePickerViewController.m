@@ -7,38 +7,30 @@
 //
 
 #import "YHImagePickerViewController.h"
+#import "YHAlbumPickerViewController.h"
 
 @interface YHImagePickerViewController ()
 
 @end
 
 @implementation YHImagePickerViewController
-
+- (instancetype)init
+{
+    YHAlbumPickerViewController *albumViewController = [YHAlbumPickerViewController albumPickerViewController];
+    self = [super initWithRootViewController:albumViewController];
+    if (self) {
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self configureSelf];
-}
-- (void)configureSelf {
-    if (!self.navigationController) {
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self];
-        nav.navigationBar.barStyle = UIBarStyleDefault;
-        nav.navigationBar.barTintColor = [UIColor blackColor];
-    }
-    self.navigationController.title = @"所有照片";
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(sureButtonClicked)];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];
-}
-- (void)sureButtonClicked {
-    
-}
-- (void)cancelButtonClicked {
 
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

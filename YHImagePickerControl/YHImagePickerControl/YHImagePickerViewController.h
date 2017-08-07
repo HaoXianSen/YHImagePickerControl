@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YHImagePickerViewController : UIViewController
+@interface YHImagePickerViewController : UINavigationController
 
 @end

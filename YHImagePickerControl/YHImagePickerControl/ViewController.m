@@ -21,14 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureSelf];
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-    formater.dateFormat = @"yyyy-MM-dd hh:mm:ss";
-    formater.timeZone = [NSTimeZone localTimeZone];
-    NSString *dateString = [formater stringFromDate:date];
-    formater.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-    NSDate *currentDate = [formater dateFromString:dateString];
-    
 }
 - (void) configureSelf {
     [self.collectionView registerNib:[UINib nibWithNibName:PhotoCollectionViewCellId bundle:nil] forCellWithReuseIdentifier:PhotoCollectionViewCellId];
@@ -65,7 +57,7 @@
     }
 }
 - (void)showPhotoAlbum {
-    YHImagePickerViewController *imagePickerVC = [[UIStoryboard storyboardWithName:@"YHImagePickerStoryBoard" bundle:nil] instantiateInitialViewController];
+    YHImagePickerViewController *imagePickerVC = [[YHImagePickerViewController alloc] init];
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 #pragma mark - UICollectionViewDelegate
