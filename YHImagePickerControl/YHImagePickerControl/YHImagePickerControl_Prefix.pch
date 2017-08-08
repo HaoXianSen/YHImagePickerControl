@@ -10,5 +10,5 @@
 #define YHImagePickerControl_Prefix_pch
 
 #import "Const.h"
-
+#import <SVProgressHUD.h>
 #endif /* YHImagePickerControl_Prefix_pch */

@@ -10,5 +10,5 @@
 #define Const_h
 
 #define kDeviceVersion [UIDevice currentDevice].systemVersion
-
+#define kiOS8Later (kDeviceVersion.doubleValue >= 8.0)
 #endif /* Const_h */
