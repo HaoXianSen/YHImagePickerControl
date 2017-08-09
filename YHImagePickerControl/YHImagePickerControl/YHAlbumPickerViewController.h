@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YHPhotoModel.h"
 
 @interface YHAlbumPickerViewController : UIViewController
-
+@property (nonatomic, strong)YHPhotoModel *model;
 + (instancetype)albumPickerViewController;
 
 @end

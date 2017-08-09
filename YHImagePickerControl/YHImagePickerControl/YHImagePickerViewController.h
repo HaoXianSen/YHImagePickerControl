@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YHPhotoModel.h"
 @interface YHImagePickerViewController : UINavigationController
+
+
 
 @end

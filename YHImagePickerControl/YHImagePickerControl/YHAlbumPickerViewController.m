@@ -12,6 +12,7 @@
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "YHPhotoAssetCell.h"
+#import "YHPreviewViewController.h"
 
 @interface YHAlbumPickerViewController ()<UIAlertViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -42,10 +43,9 @@
     [self getAllDatas];
 }
 - (void)configureSelf {
-    self.navigationController.title = @"所有照片";
+    self.title = @"所有照片";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(sureButtonClicked)];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 - (void)configureCollectionView {
     self.flowLayout.itemSize = CGSizeMake(self.view.frame.size.width/4, self.view.frame.size.width/4);
@@ -127,29 +127,45 @@
 }
 - (void)getAllPhotos {
     NSMutableArray *assetArray = [NSMutableArray array];
-//    if (kDeviceVersion.floatValue < 8.0) {
-        _assetsLibrary = [[ALAssetsLibrary alloc] init];
-    [SVProgressHUD show];
-    [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        NSLog(@"%@", group);
-        if (group != nil && [group numberOfAssets] != 0) {
-            [group setAssetsFilter:[ALAssetsFilter allAssets]];
-            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                if (result) {
-                    [assetArray addObject:result];
-                }
-            }];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _assetArray = [assetArray mutableCopy];
-            [_collectionView reloadData];
-            [SVProgressHUD dismiss];
-        });
-        
-    } failureBlock:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    if (_model) {
+        [SVProgressHUD show];
+        [_model.group setAssetsFilter:[ALAssetsFilter allAssets]];
+        [_model.group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result) {
+                [assetArray addObject:result];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _assetArray = [assetArray mutableCopy];
+                [_collectionView reloadData];
+                [SVProgressHUD dismiss];
+            });
+        }];
+
+    }else {
     
+        //    if (kDeviceVersion.floatValue < 8.0) {
+        _assetsLibrary = [[ALAssetsLibrary alloc] init];
+        [SVProgressHUD show];
+        [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            NSLog(@"%@", group);
+            if (group != nil && [group numberOfAssets] != 0) {
+                [group setAssetsFilter:[ALAssetsFilter allAssets]];
+                [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                    if (result) {
+                        [assetArray addObject:result];
+                    }
+                }];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _assetArray = [assetArray mutableCopy];
+                [_collectionView reloadData];
+                [SVProgressHUD dismiss];
+            });
+            
+        } failureBlock:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    }
 }
 #pragma mark - Collection Datasouce And Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -160,5 +176,9 @@
     ALAsset *asset = self.assetArray[indexPath.item];
     cell.photoImageView.image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    YHPreviewViewController *previewVC = [YHPreviewViewController previewControllerWithDataSource:self.assetArray andSelectedIndexPath:indexPath];
+    [self.navigationController pushViewController:previewVC animated:YES];
 }
 @end

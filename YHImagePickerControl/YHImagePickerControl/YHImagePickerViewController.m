@@ -8,6 +8,7 @@
 
 #import "YHImagePickerViewController.h"
 #import "YHAlbumPickerViewController.h"
+#import "YHPhotoGroupViewController.h"
 
 @interface YHImagePickerViewController ()
 
@@ -16,8 +17,8 @@
 @implementation YHImagePickerViewController
 - (instancetype)init
 {
-    YHAlbumPickerViewController *albumViewController = [YHAlbumPickerViewController albumPickerViewController];
-    self = [super initWithRootViewController:albumViewController];
+    YHPhotoGroupViewController *groupVC = [[YHPhotoGroupViewController alloc] init];
+    self = [super initWithRootViewController:groupVC];
     if (self) {
     }
     return self;
@@ -27,7 +28,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
 }
 
 
