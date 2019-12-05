@@ -9,6 +9,7 @@
 #import "YHPreviewViewController.h"
 #import "YHPreviewCollectionViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 @interface YHPreviewViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -35,6 +36,8 @@
     self.layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 0);
     self.collectionView.pagingEnabled = YES;
     self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.view.backgroundColor = UIColor.blackColor;
+    self.collectionView.backgroundColor = UIColor.blackColor;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -47,7 +50,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YHPreviewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YHPreviewCollectionViewCell" forIndexPath:indexPath];
     ALAsset *asset = _dataSource[indexPath.row];
+    
+#ifdef __IPHONE_8_0
+    [[PHImageManager defaultManager] requestImageForAsset:(PHAsset *)asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        cell.previewImageView.image = result;
+    }];
+    
+#else
     cell.previewImageView.image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+#endif
     return cell;
 }
 - (void)didReceiveMemoryWarning {
@@ -56,13 +67,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -17,5 +17,13 @@
     }
     return self;
 }
+#ifdef __IPHONE_8_0
+- (instancetype)initWithAssetCollection:(PHAssetCollection *)assetCollection  {
+    if (self = [super init]) {
+        _assetCollection = assetCollection;
+    }
+    return self;
+}
+#endif
 
 @end

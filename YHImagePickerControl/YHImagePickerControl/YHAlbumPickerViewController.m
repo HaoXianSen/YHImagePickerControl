@@ -48,9 +48,9 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 - (void)configureCollectionView {
-    self.flowLayout.itemSize = CGSizeMake(self.view.frame.size.width/4, self.view.frame.size.width/4);
-    self.flowLayout.minimumLineSpacing = 0.0;
-    self.flowLayout.minimumInteritemSpacing = 0.0;
+    self.flowLayout.itemSize = CGSizeMake((self.view.frame.size.width-3)/4, (self.view.frame.size.width-3)/4);
+    self.flowLayout.minimumLineSpacing = 1.0;
+    self.flowLayout.minimumInteritemSpacing = 1.0;
     [self.collectionView registerNib:[UINib nibWithNibName:@"YHPhotoAssetCell" bundle:nil] forCellWithReuseIdentifier:@"YHPhotoAssetCell"];
 }
 - (void)sureButtonClicked {
@@ -65,58 +65,9 @@
 }
 #pragma mark - Data Source 
 - (void)getAllDatas {
-    if (kiOS8Later) {
-        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-            if (status == PHAuthorizationStatusAuthorized) {
-                [self getAllPhotos];
-            } else {
-                [self showPhotosCannotOpenAlert];
-            }
-        }];
-    } else {
-        
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
-            [self getAllPhotos];
-        } else {
-            [self showPhotosCannotOpenAlert];
-        }
-    
-    }
+    [self getAllPhotos];
 }
-- (void)showPhotosCannotOpenAlert {
-    if (kDeviceVersion.floatValue < 8.0) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请前往设置打开允许访问您的照片库" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:@"取消", nil];
-        [alertView show];
-    } else {
-        UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请前往设置打开允许访问您的照片库" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self goToSystemSetting];
-        }];
-        UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self cancelButtonClicked];
-        }];
-        [alertViewController addAction:cancelButton];
-        [alertViewController addAction:okButton];
-        [self presentViewController:alertViewController animated:YES completion:nil];
-    }
 
-}
-- (void)goToSystemSetting {
-    if (kiOS8Later) {
-        NSURL *settingUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        if ([[UIApplication sharedApplication] canOpenURL:settingUrl]) {
-            [[UIApplication sharedApplication] openURL:settingUrl];
-        }
-    } else {
-        NSURL *privaceUrl = [NSURL URLWithString:@"prefs:root=Privacy&path=photos"];
-        if ([[UIApplication sharedApplication] canOpenURL:privaceUrl]) {
-            [[UIApplication sharedApplication] openURL:privaceUrl];
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请手动到设置里，到应用的设置页面，打开允许访问相册" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-    }
-}
 #pragma mark - Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) { // Cancel
@@ -127,8 +78,25 @@
 }
 - (void)getAllPhotos {
     NSMutableArray *assetArray = [NSMutableArray array];
-    if (_model) {
-        [SVProgressHUD show];
+    [SVProgressHUD show];
+    
+#ifdef __IPHONE_8_0
+    if (_model && _model.assetCollection) {
+        PHFetchOptions *options = [PHFetchOptions new];
+        options.sortDescriptors = @[
+            [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]
+        ];
+        PHFetchResult<PHAsset *> *results = [PHAsset fetchAssetsInAssetCollection:_model.assetCollection options:options];
+        [results enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [assetArray addObject:obj];
+        }];
+        self.assetArray = [assetArray copy];
+        [self.collectionView reloadData];
+        [SVProgressHUD dismiss];
+    }
+    
+#else
+    if (_model && _model.group) {
         [_model.group setAssetsFilter:[ALAssetsFilter allAssets]];
         [_model.group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if (result) {
@@ -141,31 +109,8 @@
             });
         }];
 
-    }else {
-    
-        //    if (kDeviceVersion.floatValue < 8.0) {
-        _assetsLibrary = [[ALAssetsLibrary alloc] init];
-        [SVProgressHUD show];
-        [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-            NSLog(@"%@", group);
-            if (group != nil && [group numberOfAssets] != 0) {
-                [group setAssetsFilter:[ALAssetsFilter allAssets]];
-                [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                    if (result) {
-                        [assetArray addObject:result];
-                    }
-                }];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _assetArray = [assetArray mutableCopy];
-                [_collectionView reloadData];
-                [SVProgressHUD dismiss];
-            });
-            
-        } failureBlock:^(NSError *error) {
-            NSLog(@"%@", error);
-        }];
     }
+#endif
 }
 #pragma mark - Collection Datasouce And Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -173,8 +118,17 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YHPhotoAssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YHPhotoAssetCell" forIndexPath:indexPath];
-    ALAsset *asset = self.assetArray[indexPath.item];
-    cell.photoImageView.image = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
+    id asset = self.assetArray[indexPath.item];
+
+#ifdef __IPHONE_8_0
+        PHAsset *phAsset = asset;
+        [[PHImageManager defaultManager] requestImageForAsset:phAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            cell.photoImageView.image = result;
+        }];
+#else
+        ALAsset *alAsset = asset;
+        cell.photoImageView.image = [UIImage imageWithCGImage:[alAsset aspectRatioThumbnail]];
+#endif
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

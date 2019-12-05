@@ -58,6 +58,7 @@
 }
 - (void)showPhotoAlbum {
     YHImagePickerViewController *imagePickerVC = [[YHImagePickerViewController alloc] init];
+    imagePickerVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 #pragma mark - UICollectionViewDelegate

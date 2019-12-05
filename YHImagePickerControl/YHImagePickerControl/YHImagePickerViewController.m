@@ -15,6 +15,7 @@
 @end
 
 @implementation YHImagePickerViewController
+
 - (instancetype)init
 {
     YHPhotoGroupViewController *groupVC = [[YHPhotoGroupViewController alloc] init];
@@ -23,9 +24,11 @@
     }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
