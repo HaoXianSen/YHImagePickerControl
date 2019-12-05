@@ -5,14 +5,14 @@
 主要区分
 ### iOS 8.0 之前
 iOS8之前用 ALAssetsLibrary.kit 获取照片分组、照片、以及照片缩略图
-    主要类
+主要类
         * 1. ALAssetsLibrary：提供访问系统图片app下的照片或者视频。
         * 2. ALAssetsGroup：表示一个分组，即一个相簿
         * 3. ALAsset：表示一个一张相片或者一个视频，包括其相关信息
         * 4. ALAssetFilter: 一个筛选类，可以根据此类筛选出符合条件的照片或者视频
-    主要思想
+主要思想
     用ALAssetsLibrary类负责访问相册，可以写入或者查找照片视频；从而可以查找出相簿信息，以及相片信息。相当于ALAssets是一个管理类，其他类是其模型类。
-    主要用法
+主要用法
         * 获取权限
             ```
     [ALAssetsLibrary authorizationStatus]
@@ -63,14 +63,14 @@ _assetArray = [assetArray mutableCopy];
 ### iOS 8.0 之后
 
 iOS 8.0 之后苹果发布 photo.kit 用于替代 AssetsLibrary，iOS 9.0开始废弃 AssetsLibrary。
-    主要相关类
+主要相关类
         * 1. PHPhotoLibrary: 相比于之前的ALAssetsLibrary，此类只负责权限相关和注册监听相册变化。
         * 2. PHAssetCollection:PHCollection：用于表示一个相簿，同时此类也是获取相簿连接类。
         * 3. PHAsset：用于表示一个图片或者视频，同时此类也是获取图片资源的连接类
         * 4. PHFetchResult：此类是一个包含泛型的类，包装了多个泛型对象，如：PHAsset、PHAssetCollection... 表示一次的检索结果
         * 5. PHFecthOptions：此类表示检索的选项。
         * 6. PHImageManager: UIImage 相关类，主要负责获取对应尺寸的图片。
-    主要用法
+主要用法
         * 询问权限 
             ```
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {}
