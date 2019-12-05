@@ -14,7 +14,7 @@ iOS8之前用 ALAssetsLibrary.kit 获取照片分组、照片、以及照片缩�
     用ALAssetsLibrary类负责访问相册，可以写入或者查找照片视频；从而可以查找出相簿信息，以及相片信息。相当于ALAssets是一个管理类，其他类是其模型类。
 主要用法
 * 获取权限
-            ```
+    ```
     [ALAssetsLibrary authorizationStatus]
     权限枚举
     typedef NS_ENUM(NSInteger, ALAuthorizationStatus) {
@@ -25,8 +25,8 @@ iOS8之前用 ALAssetsLibrary.kit 获取照片分组、照片、以及照片缩�
     ALAuthorizationStatusDenied NS_ENUM_DEPRECATED_IOS(6_0, 9_0),            // User has explicitly denied this application access to photos data.
     ALAuthorizationStatusAuthorized NS_ENUM_DEPRECATED_IOS(6_0, 9_0)        // User has authorized this application to access photos data.
 } ```
-*  获取分组ALAssetsGroup
-        ```
+* 获取分组ALAssetsGroup
+```
 [self.assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
 if (group) {
 YHPhotoModel *model = [[YHPhotoModel alloc] initWithGroup:group];
@@ -38,9 +38,9 @@ _dataSource = array;
 });
 } failureBlock:^(NSError *error) {
 }];
-    ```
-*  获取组内图片Assets:ALAsset
-        ``` 
+```
+* 获取组内图片Assets:ALAsset
+``` 
 [_model.group setAssetsFilter:[ALAssetsFilter allAssets]];
 [_model.group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
 if (result) {
@@ -54,10 +54,10 @@ _assetArray = [assetArray mutableCopy];
 }];
 }
     ```
-*  获取缩略图
-        ```
-[UIImage imageWithCGImage:[alAsset aspectRatioThumbnail]]
+* 获取缩略图
     ```
+[UIImage imageWithCGImage:[alAsset aspectRatioThumbnail]]
+```
 获取相关图片或者信息：用ALAsset的相关属性
 
 ### iOS 8.0 之后
