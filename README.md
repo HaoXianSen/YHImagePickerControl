@@ -75,7 +75,7 @@ iOS 8.0 之后苹果发布 photo.kit 用于替代 AssetsLibrary，iOS 9.0开始�
 * 6. PHImageManager: UIImage 相关类，主要负责获取对应尺寸的图片。
 
 主要用法
-    * 1. 询问权限：    
+    * 询问权限： 
     ```
 [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {}
 权限枚举：
@@ -88,7 +88,7 @@ PHAuthorizationStatusDenied,            // User has explicitly denied this appli
 PHAuthorizationStatusAuthorized         // User has authorized this application to access photos data.
 };
     ```
-   *  2. 获取分组: PHAssetCollection
+   * 获取分组: PHAssetCollection
     ```
 if (status == PHAuthorizationStatusAuthorized) {
 PHFetchResult *userResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
@@ -107,7 +107,7 @@ dispatch_async(dispatch_get_main_queue(), ^{
 });
 }
     ```
-   *  3. 获取组内图片：PHAsset
+   *  获取组内图片：PHAsset
     ```
 PHFetchOptions *options = [PHFetchOptions new];
 options.sortDescriptors = @[
@@ -120,7 +120,7 @@ PHFetchResult<PHAsset *> *results = [PHAsset fetchAssetsInAssetCollection:_model
 self.assetArray = [assetArray copy];
 [self.collectionView reloadData]; 
     ```
-    * 4. 获取Image图片：
+    * 获取Image图片：
     ```
 PHAsset *phAsset = asset;
 [[PHImageManager defaultManager] requestImageForAsset:phAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
