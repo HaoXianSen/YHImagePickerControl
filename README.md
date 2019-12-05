@@ -15,19 +15,19 @@ iOS8之前用 ALAssetsLibrary.kit 获取照片分组、照片、以及照片缩�
 用ALAssetsLibrary类负责访问相册，可以写入或者查找照片视频；从而可以查找出相簿信息，以及相片信息。相当于ALAssets是一个管理类，其他类是其模型类。
 
 主要用法：
-   *  获取权限：[ALAssetsLibrary authorizationStatus]
-   * 权限相关枚举：
-    ```
-typedef NS_ENUM(NSInteger, ALAuthorizationStatus) {
-ALAuthorizationStatusNotDetermined NS_ENUM_DEPRECATED_IOS(6_0, 9_0) = 0, // User has not yet made a choice with regards to this application
-ALAuthorizationStatusRestricted NS_ENUM_DEPRECATED_IOS(6_0, 9_0),        // This application is not authorized to access photo data.
-// The user cannot change this application’s status, possibly due to active restrictions
-//  such as parental controls being in place.
-ALAuthorizationStatusDenied NS_ENUM_DEPRECATED_IOS(6_0, 9_0),            // User has explicitly denied this application access to photos data.
-ALAuthorizationStatusAuthorized NS_ENUM_DEPRECATED_IOS(6_0, 9_0)        // User has authorized this application to access photos data.
-}
-    ```
-   *  获取分组ALAssetsGroup:
+    *  获取权限
+        ```
+    [ALAssetsLibrary authorizationStatus]
+    权限枚举
+    typedef NS_ENUM(NSInteger, ALAuthorizationStatus) {
+    ALAuthorizationStatusNotDetermined NS_ENUM_DEPRECATED_IOS(6_0, 9_0) = 0, // User has not yet made a choice with regards to this application
+    ALAuthorizationStatusRestricted NS_ENUM_DEPRECATED_IOS(6_0, 9_0),        // This application is not authorized to access photo data.
+    // The user cannot change this application’s status, possibly due to active restrictions
+    //  such as parental controls being in place.
+    ALAuthorizationStatusDenied NS_ENUM_DEPRECATED_IOS(6_0, 9_0),            // User has explicitly denied this application access to photos data.
+    ALAuthorizationStatusAuthorized NS_ENUM_DEPRECATED_IOS(6_0, 9_0)        // User has authorized this application to access photos data.
+} ```
+   *  获取分组ALAssetsGroup
     ```
 [self.assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
 if (group) {
@@ -41,7 +41,7 @@ _dataSource = array;
 } failureBlock:^(NSError *error) {
 }];
     ```
-   *  获取组内图片Assets:ALAsset: 
+   *  获取组内图片Assets:ALAsset
     ``` 
 [_model.group setAssetsFilter:[ALAssetsFilter allAssets]];
 [_model.group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
@@ -75,7 +75,7 @@ iOS 8.0 之后苹果发布 photo.kit 用于替代 AssetsLibrary，iOS 9.0开始�
 * 6. PHImageManager: UIImage 相关类，主要负责获取对应尺寸的图片。
 
 主要用法
-    * 询问权限： 
+    * 询问权限 
     ```
 [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {}
 权限枚举：
@@ -120,7 +120,7 @@ PHFetchResult<PHAsset *> *results = [PHAsset fetchAssetsInAssetCollection:_model
 self.assetArray = [assetArray copy];
 [self.collectionView reloadData]; 
     ```
-    * 获取Image图片：
+    * 获取Image图片
     ```
 PHAsset *phAsset = asset;
 [[PHImageManager defaultManager] requestImageForAsset:phAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
