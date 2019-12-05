@@ -72,54 +72,54 @@ iOS 8.0 之后苹果发布 photo.kit 用于替代 AssetsLibrary，iOS 9.0开始�
         * 6. PHImageManager: UIImage 相关类，主要负责获取对应尺寸的图片。
 主要用法
 * 询问权限 
-            ```
+   ```
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {}
         权限枚举：
-typedef NS_ENUM(NSInteger, PHAuthorizationStatus) {
-PHAuthorizationStatusNotDetermined = 0, // User has not yet made a choice with regards to this application
-PHAuthorizationStatusRestricted,        // This application is not authorized to access photo data.
-// The user cannot change this application’s status, possibly due to active restrictions
-//   such as parental controls being in place.
-PHAuthorizationStatusDenied,            // User has explicitly denied this application access to photos data.
-PHAuthorizationStatusAuthorized         // User has authorized this application to access photos data.
-};
-            ```
+        typedef NS_ENUM(NSInteger, PHAuthorizationStatus) {
+        PHAuthorizationStatusNotDetermined = 0, // User has not yet made a choice with regards to this application
+        PHAuthorizationStatusRestricted,        // This application is not authorized to access photo data.
+        // The user cannot change this application’s status, possibly due to active restrictions
+         //   such as parental controls being in place.
+        PHAuthorizationStatusDenied,            // User has explicitly denied this application access to photos data.
+        PHAuthorizationStatusAuthorized         // User has authorized this application to access photos data.
+        };
+  ```
 * 获取分组: PHAssetCollection
-            ```
-if (status == PHAuthorizationStatusAuthorized) {
-PHFetchResult *userResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-PHFetchResult *libResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
-[libResult enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-YHPhotoModel *photoModel = [[YHPhotoModel alloc] initWithAssetCollection:obj];
-[array addObject:photoModel];
-}];
-[userResult enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-YHPhotoModel *photoModel = [[YHPhotoModel alloc] initWithAssetCollection:obj];
-[array addObject:photoModel];
-}];
-self.dataSource = [array copy];
-dispatch_async(dispatch_get_main_queue(), ^{
-[self.groupTableView reloadData];
-});
-}
+  ```
+    if (status == PHAuthorizationStatusAuthorized) {
+        PHFetchResult *userResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum     subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+        PHFetchResult *libResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+        [libResult enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YHPhotoModel *photoModel = [[YHPhotoModel alloc] initWithAssetCollection:obj];
+        [array addObject:photoModel];
+    }];
+        [userResult enumerateObjectsUsingBlock:^(PHAssetCollection *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YHPhotoModel *photoModel = [[YHPhotoModel alloc] initWithAssetCollection:obj];
+        [array addObject:photoModel];
+    }];
+    self.dataSource = [array copy];
+    dispatch_async(dispatch_get_main_queue(), ^{
+    [self.groupTableView reloadData];
+    });
+    }
         ```
 *  获取组内图片：PHAsset
-            ```
-PHFetchOptions *options = [PHFetchOptions new];
-options.sortDescriptors = @[
-[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]
-];
-PHFetchResult<PHAsset *> *results = [PHAsset fetchAssetsInAssetCollection:_model.assetCollection options:options];
-[results enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-[assetArray addObject:obj];
-}];
-self.assetArray = [assetArray copy];
-[self.collectionView reloadData]; 
+   ```
+    PHFetchOptions *options = [PHFetchOptions new];
+    options.sortDescriptors = @[
+    [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]
+    ];
+    PHFetchResult<PHAsset *> *results = [PHAsset fetchAssetsInAssetCollection:_model.assetCollection options:options];
+    [results enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [assetArray addObject:obj];
+    }];
+    self.assetArray = [assetArray copy];
+    [self.collectionView reloadData]; 
     ```
 * 获取Image图片 
-            ```
-PHAsset *phAsset = asset;
-[[PHImageManager defaultManager] requestImageForAsset:phAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-cell.photoImageView.image = result;
-}];
+  ```
+    PHAsset *phAsset = asset;
+        [[PHImageManager defaultManager] requestImageForAsset:phAsset targetSize:PHImageManagerMaximumSize  contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    cell.photoImageView.image = result;
+    }];
     ```
